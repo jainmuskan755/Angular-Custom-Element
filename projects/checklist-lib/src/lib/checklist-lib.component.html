@@ -1,0 +1,523 @@
+<div *ngIf="!message">
+    <h5>{{message}}</h5>
+</div>
+<div class="drawwraper" *ngIf="!message">
+    <form [formGroup]="checkListForm" (ngSubmit)="onSubmit()" novalidate>
+        <h2 class="mb-4"><strong> {{ (checkListForm.get('equal_and_less_150k').value == '1') && '$150K OR LESS' || 'Over $150K'}}</strong></h2> 
+        <h5 class="mb-4"><strong>{{ (checkListForm.get('ppp_loan_draw').value == '1') && 'Draw 1' || 'Draw 2'}}</strong></h5>
+        <div class="rowlinediv" formGroupName="generated_3508" *ngIf="checkListForm.get('generated_3508')['controls']['label'].value">
+            <div class="colrowlab">
+            <label>{{checkListForm.get('generated_3508')['controls']['label'].value}} </label>
+            </div>
+            <div class="colrowdata">
+
+                <input type="radio" id="3508S_1" value="Yes" formControlName="value" 
+                [attr.disabled]="checkListForm.get('generated_3508')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('generated_3508')['controls']['required'].value === 'true'" >
+                <label for="3508S_1">Yes</label>
+
+                <input type="radio" id="3508S_2" value="No" formControlName="value" 
+                [attr.disabled]="checkListForm.get('generated_3508')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('generated_3508')['controls']['required'].value === 'true'">
+                <label for="3508S_2">No</label>
+
+                <span *ngIf="isSubmitted && checkListForm.get('generated_3508')['controls']['required'].value === 'true' 
+                && (checkListForm.get('generated_3508')['controls']['value'].value == '') " class="invalid-feedback">
+                    Required
+                </span>
+
+            </div>
+        </div>
+       <div class="rowlinediv" formGroupName="sent_3508" *ngIf="checkListForm.get('sent_3508')['controls']['label'].value">
+            <div class="colrowlab">
+                <label>{{checkListForm.get('sent_3508')['controls']['label'].value}}</label>
+            </div>
+            <div class="colrowdata">
+
+                <input type="radio" id="358S_1" value="Yes" formControlName="value"
+                 [attr.disabled]="checkListForm.get('sent_3508')['controls']['readonly'].value === 'true' ? true : null"
+                 [required]="checkListForm.get('sent_3508')['controls']['required'].value === 'true'">
+                 <label for="3508S_1">Yes</label>
+
+                <input type="radio" id="350S_2" value="No" formControlName="value" 
+                [attr.disabled]="checkListForm.get('sent_3508')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('sent_3508')['controls']['required'].value === 'true'">
+                <label for="3508S_2">No</label>
+
+                <span *ngIf="isSubmitted && checkListForm.get('sent_3508')['controls']['required'].value === 'true' 
+                && (checkListForm.get('sent_3508')['controls']['value'].value == '') " class="invalid-feedback">
+                    Required
+                </span>
+                
+            </div>
+        </div> 
+        <div class="rowlinediv" formGroupName="review_3508" *ngIf="checkListForm.get('review_3508')['controls']['label'].value">
+            <div class="colrowlab">
+                <label>{{checkListForm.get('review_3508')['controls']['label'].value}}</label>
+            </div>
+            <div class="colrowdata">
+                <input type="radio" id="Review3508S_1" value="Yes" formControlName="value" 
+                [attr.disabled]="checkListForm.get('review_3508')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('review_3508')['controls']['required'].value === 'true'">
+                <label for="Review3508S_1">Yes</label>
+                
+                <input type="radio" id="Review3508S_2" value="No" formControlName="value" 
+                [attr.disabled]="checkListForm.get('review_3508')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('review_3508')['controls']['required'].value === 'true'">
+                <label for="Review3508S_2">No</label>
+
+                <span *ngIf="isSubmitted && checkListForm.get('review_3508')['controls']['required'].value === 'true' 
+                && (checkListForm.get('review_3508')['controls']['value'].value == '') " class="invalid-feedback">
+                    Required
+                </span>
+            </div>
+        </div>
+        <div class="rowlinediv" *ngIf="checkListForm.get('all_required_made')['controls']['label'].value">
+            <div class="colrowlab">
+                <label>{{checkListForm.get('all_required_made')['controls']['label'].value}}</label>
+            </div>
+        </div>
+        <div class="indentdata" formGroupName ="all_required_made">
+            <ng-container formArrayName="options" *ngFor="let x of checkListForm.get('all_required_made')['controls']['options']['controls']; let i = index;">
+                
+                <div class="rowlinediv" [formGroupName]="i" >
+                    <div class="colrowlab" >
+                        <label>{{i+1}}. <span [innerHtml]="x.get('question').value"></span> </label>
+                        
+                    </div>
+                    <div class="colrowdata">
+                        <!--  [ngClass]="{'disabled-class': (x.get('readonly')?.value === 'true' )}" -->
+                        
+                        <input type="radio" id="3508S_1" value="Yes" formControlName="value" 
+                        [attr.disabled]="x.get('readonly')?.value === 'true' ? true : null"
+                        [required]="x.get('required')?.value === 'true'">
+                        <label for="3508S_1">Yes</label>
+                        
+                        <input type="radio" id="3508S_2" value="No" formControlName="value" 
+                        [attr.disabled]="x.get('readonly')?.value === 'true' ? true : null"
+                        [required]="x.get('required')?.value === 'true'">
+                        <label for="3508S_2">No</label>
+
+                        <span *ngIf="isSubmitted && x.get('required')?.value === 'true' 
+                        && (x.get('readonly')['value'].value == '') " class="invalid-feedback">
+                            Required
+                        </span>
+
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="rowlinediv" formGroupName="form_signed_by_borrower" *ngIf="checkListForm.get('form_signed_by_borrower')['controls']['label'].value">
+            <div class="colrowlab">
+                <label>{{checkListForm.get('form_signed_by_borrower')['controls']['label'].value}}</label>
+            </div>
+            <div class="colrowdata">
+
+                <input type="radio" id="Formsign_1" value="Yes" formControlName="value" 
+                [attr.disabled]="checkListForm.get('form_signed_by_borrower')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('form_signed_by_borrower')['controls']['required'].value === 'true'">
+                <label for="Formsign_1">Yes</label>
+
+                <input type="radio" id="Formsign_2" value="No" formControlName="value" 
+                [attr.disabled]="checkListForm.get('form_signed_by_borrower')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('form_signed_by_borrower')['controls']['required'].value === 'true'">
+                <label for="Formsign_2">No</label>
+
+                <span *ngIf="isSubmitted && checkListForm.get('form_signed_by_borrower')['controls']['required'].value === 'true' 
+                        && (checkListForm.get('form_signed_by_borrower')['controls']['value'].value == '') " class="invalid-feedback">
+                    Required
+                </span>
+
+            </div>
+        </div>  
+        <!-- <div class="rowlinediv">
+            <div class="colrowlab">
+                <p class="heading">Summary review of:</p>
+            </div>
+        </div> -->
+        <!-- <div class="indentdata"> -->
+        <div class="rowlinediv">
+            <div class="rowlinediv" formGroupName="sba_loan_no" *ngIf="checkListForm.get('sba_loan_no')['controls']['label'].value">
+                    <div class="colrowlab">{{checkListForm.get('sba_loan_no')['controls']['label'].value}} </div>
+                    <div class="colrowdata">
+                        <label>{{checkListForm.get('sba_loan_no')['controls']['value'].value}}</label>
+                        <!-- <input type="text" formControlName="value" 
+                        [attr.disabled]="checkListForm.get('sba_loan_no')['controls']['readonly'].value === 'true' ? true : null" 
+                        [required]="checkListForm.get('sba_loan_no')['controls']['required'].value === 'true'" /> -->
+                    </div>
+            </div>
+            <div class="rowlinediv" formGroupName="lender_loan_no" *ngIf="checkListForm.get('lender_loan_no')['controls']['label'].value">
+                    <div class="colrowlab"> {{checkListForm.get('lender_loan_no')['controls']['label'].value}}</div>
+                    <div class="colrowdata">
+                        <label>{{checkListForm.get('lender_loan_no')['controls']['value'].value}}</label>
+                        <!-- <input type="text" formControlName="value" 
+                        [attr.disabled]="checkListForm.get('lender_loan_no')['controls']['readonly'].value === 'true' ? true : null" 
+                        [required]="checkListForm.get('lender_loan_no')['controls']['required'].value === 'true'" /> -->
+                    </div>
+            </div>   
+            <!-- <div class="rowlinediv">
+                <div class="colrowlab" *ngIf="checkListForm.get('duration_of_covered_period')['controls']['label'].value"> 
+                    <p class="heading"> Covered period vs loan disbursement date (minimum 8, maximum 24 weeks) </p>
+                </div>
+            </div> -->
+            <!-- <div class="indentdata"> -->
+            <div class="rowlinediv">
+                <div class="rowlinediv" formGroupName="covered_start_date" *ngIf="checkListForm.get('covered_start_date')['controls']['label'].value">
+                    <div class="colrowlab"> {{checkListForm.get('covered_start_date')['controls']['label'].value}} </div>
+                    <div class="colrowdata">
+                        <label>{{checkListForm.get('covered_start_date')['controls']['value'].value}}</label>
+                        <!-- <input type="text" formControlName="value" 
+                        [attr.disabled]="checkListForm.get('covered_start_date')['controls']['readonly'].value === 'true' ? true : null" 
+                        [required]="checkListForm.get('covered_start_date')['controls']['required'].value === 'true'" /> -->
+                    </div>
+                </div>
+                <div class="rowlinediv" formGroupName="covered_end_date" *ngIf="checkListForm.get('covered_end_date')['controls']['label'].value">
+                    <div class="colrowlab"> {{checkListForm.get('covered_end_date')['controls']['label'].value}} </div>
+                    <div class="colrowdata">
+                        <label>{{checkListForm.get('covered_end_date')['controls']['value'].value}}</label>
+                        <!-- <input type="text" formControlName="value" 
+                        [attr.disabled]="checkListForm.get('covered_end_date')['controls']['readonly'].value === 'true' ? true : null" 
+                        [required]="checkListForm.get('covered_end_date')['controls']['required'].value === 'true'" /> -->
+                    </div>
+                </div>
+                <div class="rowlinediv" formGroupName="loan_disbursed_date" *ngIf="checkListForm.get('loan_disbursed_date')['controls']['label'].value">
+                    <div class="colrowlab"> {{checkListForm.get('loan_disbursed_date')['controls']['label'].value}} </div>
+                    <div class="colrowdata"> 
+                        <label>{{checkListForm.get('loan_disbursed_date')['controls']['value'].value}}</label>
+                        <!-- <input type="text" formControlName="value" 
+                        [attr.disabled]="checkListForm.get('loan_disbursed_date')['controls']['readonly'].value === 'true' ? true : null"
+                        [required]="checkListForm.get('loan_disbursed_date')['controls']['required'].value === 'true'" /> -->
+                    </div>
+                </div>
+                <div class="rowlinediv" formGroupName="duration_of_covered_period" *ngIf="checkListForm.get('duration_of_covered_period')['controls']['label'].value">
+                    <div class="colrowlab"> {{checkListForm.get('duration_of_covered_period')['controls']['label'].value}} </div>
+                    <div class="colrowdata"> 
+                        <label>{{checkListForm.get('duration_of_covered_period')['controls']['value'].value}}</label>
+                        <!-- <input type="text" formControlName="value" 
+                        [attr.disabled]="checkListForm.get('duration_of_covered_period')['controls']['readonly'].value === 'true' ? true : null" 
+                        [required]="checkListForm.get('duration_of_covered_period')['controls']['required'].value === 'true'" /> -->
+                </div>
+                </div>
+            </div>
+            <div class="rowlinediv" formGroupName="borrower_name" *ngIf="checkListForm.get('borrower_name')['controls']['label'].value">
+                <div class="colrowlab">{{checkListForm.get('borrower_name')['controls']['label'].value}}</div>
+                <div class="colrowdata">
+                    <label>{{checkListForm.get('borrower_name')['controls']['value'].value}}</label>
+                        <!-- <input type="text" formControlName="value" 
+                        [attr.disabled]="checkListForm.get('borrower_name')['controls']['readonly'].value === 'true' ? true : null"
+                        [required]="checkListForm.get('borrower_name')['controls']['required'].value === 'true'" /> -->
+                </div>
+            </div>
+            <div class="rowlinediv" formGroupName="ein" *ngIf="checkListForm.get('ein')['controls']['label'].value">
+                <div class="colrowlab">{{checkListForm.get('ein')['controls']['label'].value}} </div>
+                <div class="colrowdata">
+                    <label>{{checkListForm.get('ein')['controls']['value'].value}}</label>
+                    <!-- <input type="text" formControlName="value" 
+                    [attr.disabled]="checkListForm.get('ein')['controls']['readonly'].value === 'true' ? true : null" 
+                    [required]="checkListForm.get('ein')['controls']['required'].value === 'true'" /> -->
+                </div>
+            </div>
+            <div class="rowlinediv" formGroupName="ppp_loan_amount" *ngIf="checkListForm.get('ppp_loan_amount')['controls']['label'].value">
+                    <div class="colrowlab">{{checkListForm.get('ppp_loan_amount')['controls']['label'].value}} </div>
+                    <div class="colrowdata">
+                        <label>{{checkListForm.get('ppp_loan_amount')['controls']['value'].value}}</label>
+                        <!-- <input type="text" formControlName="value" 
+                        [attr.disabled]="checkListForm.get('ppp_loan_amount')['controls']['readonly'].value === 'true' ? true : null" 
+                        [required]="checkListForm.get('ppp_loan_amount')['controls']['required'].value === 'true'" /> -->
+                    </div>
+            </div>
+            <div class="rowlinediv" formGroupName="forgiveness_amount" *ngIf="checkListForm.get('forgiveness_amount')['controls']['label'].value">
+                    <div class="colrowlab">{{checkListForm.get('forgiveness_amount')['controls']['label'].value}} </div>
+                    <div class="colrowdata">
+                        <label>{{checkListForm.get('forgiveness_amount')['controls']['value'].value}}</label>
+                        <!-- <input type="text" formControlName="value" 
+                        [attr.disabled]="checkListForm.get('forgiveness_amount')['controls']['readonly'].value === 'true' ? true : null" 
+                        [required]="checkListForm.get('forgiveness_amount')['controls']['required'].value === 'true'" /> -->
+                    </div>
+            </div>
+        </div>
+
+        <!-- $150K OR LESS / Draw 2 -->
+
+        <div class="rowlinediv" formGroupName="reduction_claimed" *ngIf="checkListForm.get('reduction_claimed')['controls']['is_annual'].value">
+            
+           <!-- Annual Label -->
+            <ng-container *ngIf="( checkListForm.get('reduction_claimed')['controls']['is_annual'].value == 'annual')" formGroupName="annual">
+                <div class="colrowlab">
+                    <label>{{checkListForm.get('reduction_claimed')['controls']['annual']['controls']['label'].value}}</label>
+                </div>
+                <div class="colrowdata">
+
+                    <input type="radio" id="reduction_claimed_1" value="Yes" formControlName="value" 
+                    [attr.disabled]="(checkListForm.get('reduction_claimed')['controls']['annual']['controls']['readonly'].value === 'true' ? true : null)"
+                    [required]="(checkListForm.get('reduction_claimed')['controls']['annual']['controls']['required'].value === 'true')">
+                    <label for="reduction_claimed_1">Yes</label>
+
+                    <input type="radio" id="reduction_claimed_2" value="No" formControlName="value" 
+                    [attr.disabled]="checkListForm.get('reduction_claimed')['controls']['annual']['controls']['readonly'].value === 'true' ? true : null"
+                    [required]="checkListForm.get('reduction_claimed')['controls']['annual']['controls']['required'].value === 'true'">
+                    <label for="reduction_claimed_2">No</label>
+
+                    <span *ngIf="isSubmitted && checkListForm.get('reduction_claimed')['controls']['annual']['controls']['required'].value === 'true' 
+                        && (checkListForm.get('reduction_claimed')['controls']['annual']['controls']['value'].value == '') " class="invalid-feedback">
+                        Required
+                    </span>
+
+                </div>
+           </ng-container>
+
+           <!-- Quarterly Label -->
+           <ng-container *ngIf="( checkListForm.get('reduction_claimed')['controls']['is_annual'].value == 'quarterly')" formGroupName="quarterly">
+                <div class="colrowlab">
+                    <label>{{checkListForm.get('reduction_claimed')['controls']['quarterly']['controls']['label'].value}}</label>
+                </div>
+                <div class="colrowdata">
+                    
+                    <input type="radio" id="reduction_claimed_1" value="Yes" formControlName="value" 
+                    [attr.disabled]="checkListForm.get('reduction_claimed')['controls']['quarterly']['controls']['readonly'].value === 'true' ? true : null"
+                    [required]="checkListForm.get('reduction_claimed')['controls']['quarterly']['controls']['required'].value === 'true'">
+                    <label for="reduction_claimed_1">Yes</label>
+                    
+                    <input type="radio" id="reduction_claimed_2" value="No" formControlName="value" 
+                    [attr.disabled]="checkListForm.get('reduction_claimed')['controls']['quarterly']['controls']['readonly'].value === 'true' ? true : null"
+                    [required]="checkListForm.get('reduction_claimed')['controls']['quarterly']['controls']['required'].value === 'true'">
+                    <label for="reduction_claimed_2">No</label>
+
+                    <span *ngIf="isSubmitted && checkListForm.get('reduction_claimed')['controls']['quarterly']['controls']['required'].value === 'true' 
+                        && (checkListForm.get('reduction_claimed')['controls']['quarterly']['controls']['value'].value == '') " class="invalid-feedback">
+                        Required
+                    </span>
+                </div>
+            </ng-container>
+           
+        </div>  
+        <div class="indentdata" formGroupName="reduction_claimed" *ngIf="checkListForm.get('reduction_claimed')['controls']['is_annual'].value">
+            <!-- Annual Extra Params -->
+            <ng-container formGroupName="annual" *ngIf="( checkListForm.get('reduction_claimed')['controls']['is_annual'].value == 'annual')">
+                <ng-container *ngIf="checkListDetails['reduction_claimed']['annual']['extra_params'] != undefined">
+                    <ng-container formArrayName="extra_params" 
+                    *ngFor="let item of checkListForm.get('reduction_claimed')['controls']['annual']['controls']['extra_params']['controls']; let i = index;">
+                        <div class="rowlinediv" [formGroupName]="i">
+                            <div class="colrowlab" >
+                                <label><span [innerHtml]="item.get('label').value"></span> </label>
+                            </div>
+                            <div class="colrowdata">
+
+                                <input type="radio" id="extra_params_1" value="Yes" formControlName="value" 
+                                [attr.disabled]="item.get('readonly')?.value === 'true' ? true : null"
+                                [required]="item.get('required')?.value === 'true'">
+                                <label for="extra_params_1">Yes</label>
+
+                                <input type="radio" id="extra_params_2" value="No" formControlName="value" 
+                                [attr.disabled]="item.get('readonly')?.value === 'true' ? true : null"
+                                [required]="item.get('required')?.value === 'true'">
+                                <label for="extra_params_2">No</label>
+
+                                <span *ngIf="isSubmitted && item.get('required').value === 'true' 
+                                    && (item.get('value').value == '') " class="invalid-feedback">
+                                    Required
+                                </span>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+
+
+              <!-- Quarterly Extra Params -->
+            <ng-container formGroupName="quarterly" *ngIf="( checkListForm.get('reduction_claimed')['controls']['is_annual'].value == 'quarterly')">
+                <ng-container *ngIf="checkListDetails['reduction_claimed']['quarterly']['extra_params'] != undefined">                
+                    <ng-container formArrayName="extra_params" *ngFor="let item of checkListForm.get('reduction_claimed')['controls']['quarterly']['controls']['extra_params']['controls']; let i = index;">
+                        <div class="rowlinediv" [formGroupName]="i">
+                            <div class="colrowlab" >
+                                <label><span [innerHtml]="item.get('label').value"></span> </label>
+                            </div>
+                            <div class="colrowdata">
+
+                                <input type="radio" id="extra_params_1" value="Yes" formControlName="value" 
+                                [attr.disabled]="item.get('readonly')?.value === 'true' ? true : null"
+                                [required]="item.get('required')?.value === 'true'">
+                                <label for="extra_params_1">Yes</label>
+
+                                <input type="radio" id="extra_params_2" value="No" formControlName="value" 
+                                [attr.disabled]="item.get('readonly')?.value === 'true' ? true : null"
+                                [required]="item.get('required')?.value === 'true'">
+                                <label for="extra_params_2">No</label>
+
+                                <span *ngIf="isSubmitted && item.get('required').value === 'true' 
+                                    && (item.get('value').value == '') " class="invalid-feedback">
+                                    Required
+                                </span>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+
+        <!-- </ng-container> -->
+
+
+        </div>
+
+        <!-- $150K OR LESS / Draw 2 -->
+
+        
+        
+        <!-- OVER $150K / Draw 1 -->
+
+        <div class="rowlinediv" formGroupName="confirm_receipt_docs" *ngIf="checkListForm.get('confirm_receipt_docs')['controls']['label'].value">
+            <div class="colrowlab">{{checkListForm.get('confirm_receipt_docs')['controls']['label'].value}} </div>
+            <div class="colrowdata">
+
+                <input type="radio" id="confirm_receipt_docs_1" value="Yes" formControlName="value" 
+                [attr.disabled]="checkListForm.get('confirm_receipt_docs')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('confirm_receipt_docs')['controls']['required'].value === 'true'">
+                <label for="confirm_receipt_docs_1">Yes</label>
+
+                <input type="radio" id="confirm_receipt_docs_2" value="No" formControlName="value" 
+                [attr.disabled]="checkListForm.get('confirm_receipt_docs')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('confirm_receipt_docs')['controls']['required'].value === 'true'">
+                <label for="confirm_receipt_docs_2">No</label>
+
+                <span *ngIf="isSubmitted && checkListForm.get('confirm_receipt_docs')['controls']['required'].value === 'true' 
+                    && (checkListForm.get('confirm_receipt_docs')['controls']['value'].value == '') " class="invalid-feedback">
+                    Required
+                </span>
+
+            </div>
+        </div>
+
+        <div class="rowlinediv" formGroupName="validate_supporting_docs" *ngIf="checkListForm.get('validate_supporting_docs')['controls']['label'].value">
+            <div class="colrowlab">{{checkListForm.get('validate_supporting_docs')['controls']['label'].value}} </div>
+            <div class="colrowdata">
+
+                <input type="radio" id="validate_supporting_docs_1" value="Yes" formControlName="value" 
+                [attr.disabled]="checkListForm.get('validate_supporting_docs')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('validate_supporting_docs')['controls']['required'].value === 'true'">
+                <label for="validate_supporting_docs_1">Yes</label>
+
+                <input type="radio" id="validate_supporting_docs_2" value="No" formControlName="value" 
+                [attr.disabled]="checkListForm.get('validate_supporting_docs')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('validate_supporting_docs')['controls']['required'].value === 'true'">
+                <label for="validate_supporting_docs_2">No</label>
+
+                <span *ngIf="isSubmitted && checkListForm.get('validate_supporting_docs')['controls']['required'].value === 'true' 
+                    && (checkListForm.get('validate_supporting_docs')['controls']['value'].value == '') " class="invalid-feedback">
+                    Required
+                </span>
+
+            </div>
+        </div>
+
+        <div class="rowlinediv" formGroupName="confirm_calculation" *ngIf="checkListForm.get('confirm_calculation')['controls']['label'].value">
+            <div class="colrowlab">{{checkListForm.get('confirm_calculation')['controls']['label'].value}} </div>
+            <div class="colrowdata">
+
+                <input type="radio" id="confirm_calculation_1" value="Yes" formControlName="value" 
+                [attr.disabled]="checkListForm.get('confirm_calculation')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('confirm_calculation')['controls']['required'].value === 'true'">
+                <label for="confirm_calculation_1">Yes</label>
+                
+                <input type="radio" id="confirm_calculation_2" value="No" formControlName="value" 
+                [attr.disabled]="checkListForm.get('confirm_calculation')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('confirm_calculation')['controls']['required'].value === 'true'">
+                <label for="confirm_calculation_2">No</label>
+
+                <span *ngIf="isSubmitted && checkListForm.get('confirm_calculation')['controls']['required'].value === 'true' 
+                    && (checkListForm.get('confirm_calculation')['controls']['value'].value == '') " class="invalid-feedback">
+                    Required
+                </span>
+            
+            </div>
+        </div>
+
+        <div class="rowlinediv" formGroupName="calculation_of_line_11_14" *ngIf="checkListForm.get('calculation_of_line_11_14')['controls']['label'].value">
+            <div class="colrowlab">{{checkListForm.get('calculation_of_line_11_14')['controls']['label'].value}} </div>
+            <div class="colrowdata">
+                <label>{{checkListForm.get('calculation_of_line_11_14')['controls']['value'].value}}</label>
+                <!-- <input type="text" formControlName="value" 
+                [attr.disabled]="checkListForm.get('calculation_of_line_11_14')['controls']['readonly'].value === 'true' ? true : null" 
+                [required]="checkListForm.get('calculation_of_line_11_14')['controls']['required'].value === 'true'"/> -->
+            </div>
+        </div>
+
+        <div class="rowlinediv" formGroupName="yodlee_with_no_bank" *ngIf="checkListForm.get('yodlee_with_no_bank')['controls']['label'].value">
+            <div class="colrowlab">{{checkListForm.get('yodlee_with_no_bank')['controls']['label'].value}} </div>
+            <div class="colrowdata">
+                
+                <input type="radio" id="yodlee_with_no_bank_1" value="Yes" formControlName="value" 
+                [attr.disabled]="checkListForm.get('yodlee_with_no_bank')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('no_yodlee_with_bank')['controls']['required'].value === 'true'">
+                <label for="yodlee_with_no_bank_1">Yes</label>
+                
+                <input type="radio" id="yodlee_with_no_bank_2" value="No" formControlName="value" 
+                [attr.disabled]="checkListForm.get('yodlee_with_no_bank')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('no_yodlee_with_bank')['controls']['required'].value === 'true'">
+                <label for="yodlee_with_no_bank_2">No</label>
+
+                <span *ngIf="isSubmitted && checkListForm.get('no_yodlee_with_bank')['controls']['required'].value === 'true' 
+                    && (checkListForm.get('no_yodlee_with_bank')['controls']['value'].value == '') " class="invalid-feedback">
+                    Required
+                </span>
+            
+            </div>
+        </div>
+
+        <div class="rowlinediv" formGroupName="no_yodlee_with_bank" *ngIf="checkListForm.get('no_yodlee_with_bank')['controls']['label'].value">
+            <div class="colrowlab">{{checkListForm.get('no_yodlee_with_bank')['controls']['label'].value}} </div>
+            <div class="colrowdata">
+                <input type="radio" id="no_yodlee_with_bank_1" value="Yes" formControlName="value" 
+                [attr.disabled]="checkListForm.get('no_yodlee_with_bank')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('no_yodlee_with_bank')['controls']['required'].value === 'true'">
+                <label for="no_yodlee_with_bank_1">Yes</label>
+                <input type="radio" id="no_yodlee_with_bank_2" value="No" formControlName="value" 
+                [attr.disabled]="checkListForm.get('no_yodlee_with_bank')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('no_yodlee_with_bank')['controls']['required'].value === 'true'">
+                <label for="no_yodlee_with_bank_2">No</label>
+
+                <span *ngIf="isSubmitted && checkListForm.get('no_yodlee_with_bank')['controls']['required'].value === 'true' 
+                    && (checkListForm.get('no_yodlee_with_bank')['controls']['value'].value == '') " class="invalid-feedback">
+                    Required
+                </span>
+            </div>
+        </div>
+
+        <!-- OVER $150K / Draw 1 -->
+
+
+
+        <!-- OVER $150K / Draw 2 -->
+        
+        <div class="rowlinediv" formGroupName="confirm_revenue_reduction" *ngIf="checkListForm.get('confirm_revenue_reduction')['controls']['label'].value">
+            <div class="colrowlab">{{checkListForm.get('confirm_revenue_reduction')['controls']['label'].value}} </div>
+            <div class="colrowdata">
+                
+                <input type="radio" id="confirm_revenue_reduction_1" value="Yes" formControlName="value" 
+                [attr.disabled]="checkListForm.get('confirm_revenue_reduction')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('confirm_revenue_reduction')['controls']['required'].value === 'true'">
+                <label for="confirm_revenue_reduction_1">Yes</label>
+
+                <input type="radio" id="confirm_revenue_reduction_2" value="No" formControlName="value" 
+                [attr.disabled]="checkListForm.get('confirm_revenue_reduction')['controls']['readonly'].value === 'true' ? true : null"
+                [required]="checkListForm.get('confirm_revenue_reduction')['controls']['required'].value === 'true'">
+                <label for="confirm_revenue_reduction_2">No</label>
+
+                <span *ngIf="isSubmitted && checkListForm.get('confirm_revenue_reduction')['controls']['required'].value === 'true' 
+                    && (checkListForm.get('confirm_revenue_reduction')['controls']['value'].value == '') " class="invalid-feedback">
+                    Required
+                </span>
+            
+            </div>
+        </div>
+
+        <!-- OVER $150K / Draw 2 -->
+
+
+        <div class="rowlinediv">
+            <button type='submit' class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>    
+</div>
+
+<app-loader></app-loader>

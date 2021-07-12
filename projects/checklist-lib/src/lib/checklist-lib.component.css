@@ -1,0 +1,25 @@
+/* .rowlinediv{width:100%;display:flex;flex-direction: row;}
+.rowlinediv .colrowlab{flex: 0 0 80%;max-width:80%;padding-bottom: 2%;}
+.rowlinediv .colrowdata{flex: 0 0 20%;max-width:20%;padding-bottom: 2%;} */
+.drawwraper { padding: 15px;font-family: Arial, Helvetica, sans-serif;font-size: 14px;}
+#doclist .drawwraper .title .trig.active,h2 { border-bottom: 1px solid rgba(0,0,0,.1);  margin-bottom: 20px !important; background: none; font-size: 16px; color: #333; padding: 0; padding-bottom: 10px; font-family: 'OpenSansBol', Arial, Helvetica, sans-serif; }
+.drawwraper .title p,h5,.heading { font-size: 15px; color: #333; font-weight: bold; margin: 0; }
+.drawwraper h5 strong { color: #99cc00; }
+.drawwraper .rowlinediv { float: left; width: 100%; line-height: 26px; padding: 9px 0; }
+.drawwraper .colrowlab { width: 80%; float: left; padding-right: 1%; }
+.drawwraper .colrowlab label { font-size: 14px; line-height: 26px; padding: 7px 0; font-weight: 500; }
+.drawwraper .colrowdata { float: left; width: 19%; }
+.drawwraper .colrowdata li { font-size: 14px; line-height: 26px; padding-bottom: 10px; }
+.drawwraper .rowlinediv.order-indent .colrowlab { width: 100%; }
+.drawwraper .rowlinediv.order-indent > .colrowdata,.indentdata { width: 100%; }
+.drawwraper .rowlinediv.order-indent .rowlinediv .colrowlab { width: 80%; padding-right: 1%; }
+.drawwraper .rowlinediv.order-indent .rowlinediv .colrowdata { width: 19%; }
+.colrowdata input + label { padding: 0 7px; }
+.drawwraper .rowlinediv.order-indent .rowlinediv .colrowdata input { vertical-align: top; margin-top: 5px; }
+input { margin: 0; }
+.indentdata .rowlinediv { padding-left: 2%; width: 97.5%; }
+.invalid-feedback{color:#dc3545}
+
+button { color:  #fff; font-size: 14px; padding: 4px 30px; background: #99cc00; font-weight: bold; border: 1px solid #99cc00; border-radius: 3px; }
+
+

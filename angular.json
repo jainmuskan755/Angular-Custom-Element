@@ -3,5 +3,162 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "checklist-lib": {
+      "projectType": "library",
+      "root": "projects/checklist-lib",
+      "sourceRoot": "projects/checklist-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/checklist-lib/tsconfig.lib.json",
+            "project": "projects/checklist-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/checklist-lib/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/checklist-lib/src/test.ts",
+            "tsConfig": "projects/checklist-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/checklist-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/checklist-lib/tsconfig.lib.json",
+              "projects/checklist-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "checklist-lib-app": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/checklist-lib-app",
+      "sourceRoot": "projects/checklist-lib-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/checklist-lib-app",
+            "index": "projects/checklist-lib-app/src/index.html",
+            "main": "projects/checklist-lib-app/src/main.ts",
+            "polyfills": "projects/checklist-lib-app/src/polyfills.ts",
+            "tsConfig": "projects/checklist-lib-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/checklist-lib-app/src/favicon.ico",
+              "projects/checklist-lib-app/src/assets"
+            ],
+            "styles": [
+              "projects/checklist-lib-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/checklist-lib-app/src/environments/environment.ts",
+                  "with": "projects/checklist-lib-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "checklist-lib-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "checklist-lib-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "checklist-lib-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/checklist-lib-app/src/test.ts",
+            "polyfills": "projects/checklist-lib-app/src/polyfills.ts",
+            "tsConfig": "projects/checklist-lib-app/tsconfig.spec.json",
+            "karmaConfig": "projects/checklist-lib-app/karma.conf.js",
+            "assets": [
+              "projects/checklist-lib-app/src/favicon.ico",
+              "projects/checklist-lib-app/src/assets"
+            ],
+            "styles": [
+              "projects/checklist-lib-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/checklist-lib-app/tsconfig.app.json",
+              "projects/checklist-lib-app/tsconfig.spec.json",
+              "projects/checklist-lib-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/checklist-lib-app/e2e/protractor.conf.js",
+            "devServerTarget": "checklist-lib-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "checklist-lib-app:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "checklist-lib"
 }
