@@ -18,6 +18,7 @@ export class ChecklistLibComponent implements OnInit {
   checkListDetails:any;
   isSubmitted = false;
   message ='';
+  errorMsg='';
 
   get question_arr() { return this.checkListForm.get('all_required_made')['controls']['options'] as FormArray; }
   get extra_param_annual_arr() { return this.checkListForm.get('reduction_claimed')['controls']['annual']['controls']['extra_params'] as FormArray; }
@@ -48,6 +49,8 @@ export class ChecklistLibComponent implements OnInit {
         // console.log('this.checkListDetails',this.checkListDetails);
         if( resultData != null ){
           this.checkListDetails = JSON.parse( resultData);
+          // this.checkListDetails['ppp_loan_amount']['value']= this.numberWithCommas(this.checkListDetails.ppp_loan_amount['value']);
+          console.log('checkListDetails',this.checkListDetails)
           this.patchTheForm();
           this.cdr.detectChanges();
           this.loaderService.hideLoader();
@@ -61,6 +64,10 @@ export class ChecklistLibComponent implements OnInit {
     });
     
     
+  }
+
+  numberWithCommasAndDecimal(x) {
+    return (x.toFixed()).toLocaleString();
   }
 
   initializeForm() {
@@ -363,6 +370,7 @@ export class ChecklistLibComponent implements OnInit {
       }
     }, (err: HttpErrorResponse) => {
       console.log('Error is:', err);
+      this.errorMsg = err['result'];
     });
   }
 

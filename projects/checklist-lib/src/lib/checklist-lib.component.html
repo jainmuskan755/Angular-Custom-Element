@@ -220,8 +220,10 @@
             <div class="rowlinediv" formGroupName="ppp_loan_amount" *ngIf="checkListForm.get('ppp_loan_amount')['controls']['label'].value">
                     <div class="colrowlab">{{checkListForm.get('ppp_loan_amount')['controls']['label'].value}} </div>
                     <div class="colrowdata">
-                        <label>{{checkListForm.get('ppp_loan_amount')['controls']['value'].value}}</label>
-                        <!-- <input type="text" formControlName="value" 
+                        <label >$ {{ ((checkListForm.get('ppp_loan_amount')['controls']['format'].value == 'currency') 
+                            && numberWithCommas(checkListForm.get('ppp_loan_amount')['controls']['value'].value)) 
+                            || (checkListForm.get('ppp_loan_amount')['controls']['value'].value)}}</label>
+                        <!-- <input type="text" formControlName="value" mask="separator.2" thousandSeparator="," separatorLimit="999999999"
                         [attr.disabled]="checkListForm.get('ppp_loan_amount')['controls']['readonly'].value === 'true' ? true : null" 
                         [required]="checkListForm.get('ppp_loan_amount')['controls']['required'].value === 'true'" /> -->
                     </div>
@@ -229,7 +231,9 @@
             <div class="rowlinediv" formGroupName="forgiveness_amount" *ngIf="checkListForm.get('forgiveness_amount')['controls']['label'].value">
                     <div class="colrowlab">{{checkListForm.get('forgiveness_amount')['controls']['label'].value}} </div>
                     <div class="colrowdata">
-                        <label>{{checkListForm.get('forgiveness_amount')['controls']['value'].value}}</label>
+                        <label>$ {{ ((checkListForm.get('forgiveness_amount')['controls']['format'].value == 'currency') 
+                            && numberWithCommas(checkListForm.get('forgiveness_amount')['controls']['value'].value))
+                        || (checkListForm.get('forgiveness_amount')['controls']['value'].value)}}</label>
                         <!-- <input type="text" formControlName="value" 
                         [attr.disabled]="checkListForm.get('forgiveness_amount')['controls']['readonly'].value === 'true' ? true : null" 
                         [required]="checkListForm.get('forgiveness_amount')['controls']['required'].value === 'true'" /> -->
