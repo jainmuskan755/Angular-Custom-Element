@@ -1,8 +1,13 @@
-<div *ngIf="!message">
-    <h5>{{message}}</h5>
+<div class="info-class" *ngIf="message">
+    <h4>{{message}}</h4>
+</div>
+<div class="danger-class" *ngIf="errors.length>0" >
+    <ng-container *ngFor="let errorMsg of errors;" >
+        <h4>{{errorMsg.message}}</h4>
+    </ng-container>
 </div>
 <div class="drawwraper" *ngIf="!message">
-    <form [formGroup]="checkListForm" (ngSubmit)="onSubmit()" novalidate>
+    <form [formGroup]="checkListForm" (ngSubmit)="onSubmit()" id="checklist" novalidate>
         <h2 class="mb-4"><strong> {{ (checkListForm.get('equal_and_less_150k').value == '1') && '$150K OR LESS' || 'Over $150K'}}</strong></h2> 
         <h5 class="mb-4"><strong>{{ (checkListForm.get('ppp_loan_draw').value == '1') && 'Draw 1' || 'Draw 2'}}</strong></h5>
         <div class="rowlinediv" formGroupName="generated_3508" *ngIf="checkListForm.get('generated_3508')['controls']['label'].value">
@@ -82,7 +87,8 @@
                 
                 <div class="rowlinediv" [formGroupName]="i" >
                     <div class="colrowlab" >
-                        <label>{{i+1}}. <span [innerHtml]="x.get('question').value"></span> </label>
+                        <span>{{i+1}}.</span> 
+                        <span [ngClass]="{'display-inline' : x.get('question').value}" [innerHtml]="x.get('question').value"></span> 
                         
                     </div>
                     <div class="colrowdata">
@@ -220,8 +226,7 @@
             <div class="rowlinediv" formGroupName="ppp_loan_amount" *ngIf="checkListForm.get('ppp_loan_amount')['controls']['label'].value">
                     <div class="colrowlab">{{checkListForm.get('ppp_loan_amount')['controls']['label'].value}} </div>
                     <div class="colrowdata">
-                        <label >$ {{ ((checkListForm.get('ppp_loan_amount')['controls']['format'].value == 'currency') 
-                            && numberWithCommas(checkListForm.get('ppp_loan_amount')['controls']['value'].value)) 
+                        <label > {{ ((checkListForm.get('ppp_loan_amount')['controls']['format'].value == 'currency') && ((checkListForm.get('ppp_loan_amount')['controls']['value'].value) | currency)) 
                             || (checkListForm.get('ppp_loan_amount')['controls']['value'].value)}}</label>
                         <!-- <input type="text" formControlName="value" mask="separator.2" thousandSeparator="," separatorLimit="999999999"
                         [attr.disabled]="checkListForm.get('ppp_loan_amount')['controls']['readonly'].value === 'true' ? true : null" 
@@ -231,8 +236,8 @@
             <div class="rowlinediv" formGroupName="forgiveness_amount" *ngIf="checkListForm.get('forgiveness_amount')['controls']['label'].value">
                     <div class="colrowlab">{{checkListForm.get('forgiveness_amount')['controls']['label'].value}} </div>
                     <div class="colrowdata">
-                        <label>$ {{ ((checkListForm.get('forgiveness_amount')['controls']['format'].value == 'currency') 
-                            && numberWithCommas(checkListForm.get('forgiveness_amount')['controls']['value'].value))
+                        <label>{{ ((checkListForm.get('forgiveness_amount')['controls']['format'].value == 'currency') 
+                            && ((checkListForm.get('forgiveness_amount')['controls']['value'].value) | currency))
                         || (checkListForm.get('forgiveness_amount')['controls']['value'].value)}}</label>
                         <!-- <input type="text" formControlName="value" 
                         [attr.disabled]="checkListForm.get('forgiveness_amount')['controls']['readonly'].value === 'true' ? true : null" 
@@ -518,7 +523,7 @@
 
 
         <div class="rowlinediv">
-            <button type='submit' class="btn btn-primary">Submit</button>
+            <button type='submit' class="btn btn-primary" [attr.disabled]="config && config.sent_to_sba">Submit</button>
         </div>
 
     </form>    

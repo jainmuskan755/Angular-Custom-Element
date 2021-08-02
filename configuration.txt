@@ -1,0 +1,18 @@
+//// clone repository
+
+git clone repo-url
+
+Change directory to widget/checklist  
+cd widget/checklist
+
+npm install
+
+npm run compile:lib
+
+Copy all the files from `./dist/components`​ folder and import in the html/php file
+
+use the selected <custom-lib-checklist></custom-lib-checklist> in the html/php file.
+
+
+// for testing I have created folder scripts and copy all the files in scripts folder and run http-server 
+// and then open ip address in the browser 

@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChecklistLibModule } from 'projects/checklist-lib/src/public-api';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,9 @@ import { ChecklistLibModule } from 'projects/checklist-lib/src/public-api';
     AppRoutingModule,
     ChecklistLibModule
   ],
-  providers: [],
+  providers: [
+    {provide: APP_BASE_HREF, useValue : '/' }
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

@@ -18,9 +18,7 @@
  * BROWSER POLYFILLS
  */
 
-/**
- * IE11 requires the following for NgClass support on SVG elements
- */
+/** IE10 and IE11 requires the following for NgClass support on SVG elements */
 import 'classlist.js';  // Run `npm install --save classlist.js`.
 
 /**
@@ -28,7 +26,7 @@ import 'classlist.js';  // Run `npm install --save classlist.js`.
  * Only required if AnimationBuilder is used within the application and using IE/Edge or Safari.
  * Standard animation support in Angular DOES NOT require any polyfills (as of Angular 6.0).
  */
-import 'web-animations-js';  // Run `npm install --save web-animations-js`.
+// import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
 /**
  * By default, zone.js will patch all possible macroTask and DomEvents
@@ -59,11 +57,12 @@ import 'web-animations-js';  // Run `npm install --save web-animations-js`.
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
-import 'core-js/modules/es.array.includes';
+
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-import "core-js";
+
+  
 import 'core-js/es/symbol';
 import 'core-js/es/object';
 import 'core-js/es/function';
@@ -94,4 +93,3 @@ import 'core-js/es/reflect';
  */
 import '@webcomponents/custom-elements/src/native-shim';
 import '@webcomponents/custom-elements/custom-elements.min';
-

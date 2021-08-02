@@ -22,4 +22,21 @@ input { margin: 0; }
 
 button { color:  #fff; font-size: 14px; padding: 4px 30px; background: #99cc00; font-weight: bold; border: 1px solid #99cc00; border-radius: 3px; }
 
-
+.info-class{
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    padding: 2px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.danger-class{
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    padding: 2px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}

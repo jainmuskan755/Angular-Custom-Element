@@ -1,0 +1,285 @@
+/* You can add global styles to this file, and also import other style files */
+
+.dateLander {
+    color: #6f9f36;
+    font-size: 12px;
+}
+
+.notiList {
+    max-height: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.notiList ul {
+    list-style-type: disc;
+    font-size: 25px;
+    color: #6f9f36;
+    padding-left: 24px;
+}
+
+.notiList ul li {
+    border-bottom: 1px solid #ddd;
+    padding: 0 0 15px;
+    margin: 0 0 10px;
+}
+
+.uline {
+    text-decoration: underline!important;
+}
+
+.uline:hover {
+    text-decoration: none!important;
+}
+
+.yapplicaList {
+    tbody {
+        tr {
+            td {
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.otherffgivness {
+    position: relative;
+    top: -12px;
+}
+
+.lightBluebg {
+    background: #dff1fd;
+    padding: 0;
+    border-radius: 10px;
+}
+
+.bluet {
+    color: #0577cd;
+}
+
+.yellowbg {
+    background: #f5b561;
+}
+
+.tfile {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    left: 0;
+    top: 0;
+}
+
+.delete-icon {
+    // background: url(/assets/images/delete-icon.png) no-repeat 0 0;
+    background-size: 100%;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 5px;
+}
+
+ul.Listdisc {
+    list-style-type: disc;
+}
+
+input.sm-input {
+    height: 34px;
+}
+
+.modal-xl {
+    max-width: 1100px;
+}
+
+.cp {
+    cursor: pointer;
+}
+
+
+$bg: #f5f5f5;
+$primary: #001e5d;
+$primarybgbtn: #2378c9;
+$gray97: rgba(151, 151, 151, 0.28);
+$grayA6: #a6a6a6;
+$gray5a: #5a5a5a;
+$green: #6f9f36;
+
+$red-color: #ef5555;
+
+$rgbcolor: rgba(0, 0, 0, 0.2);
+$white: #ffffff;
+$font-dark: #1c1c1c;
+$font-color: #717171;
+$darkThborder:#cacddf;
+$dbtext:#242731;
+$priGreenTowhite: #a6cc46;
+
+/* inner page */
+$bluebg: #0577cd;
+$lightbg: rgba(5, 119, 205, 0.12);
+$border-color: #d9d9d9;
+$form-color: #cccccc;
+$lightfort: #575756;
+
+$success: #3cd958;
+$primary-bg: #377cf1;
+
+$primary-light: #2c62f1;
+
+$success-light: #07ac18;
+$warning-light: #d18930;
+
+$form-color: #c5c5c5;
+$border-color: #e0e0e0;
+
+$secondborder: #a3a3a3;
+$saprate-color: #e7e7e7;
+$default-color: #acacac;
+
+$ueser-active: #f3af34;
+$formbg: rgba(28, 104, 165, 0.06);
+$striped-color: rgba(247, 247, 247, 0.68);
+
+$md-radio-checked-color: $primary;
+$md-radio-border-color: $secondborder;
+$md-radio-size: 18px;
+$md-radio-checked-size: 8px;
+$md-radio-ripple-size: 10px;
+
+$border97: rgba(151, 151, 151, 22%);
+$graybg: #e9e9e9;
+$fsize11: 11px;
+$fsize12: 12px;
+$fsize14: 14px;
+$fsize18: 18px;
+$gbg: #f5f5f5;
+
+// font weight
+$font-light: 300;
+$font-regular: 400;
+$font-medium: 500;
+$font-sami-bold: 600;
+$font-bold: 700;
+$rotate: 45deg;
+
+// font size
+$size-exs: 10px;
+$size-xs: 11px;
+$size-sm: 12px;
+$size-md: 14px;
+$size-lg: 16px;
+$size-17: 17px;
+$size-20:20px;
+$size-exl:22px;
+$size-24:24px;
+$size-26: 26px;
+$size-30: 30px;
+$size-36: 36px;
+.btn {
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 1s;
+    background-position: center;
+    height: 46px;
+    line-height: 34px;
+    border-radius: 4px;
+    &.btn-secondary {
+        border-radius: 50px;
+        border: 1px solid $primarybgbtn !important;
+        min-width: 110px;
+        background: #fff !important;
+        color: $primarybgbtn !important;
+        &:hover {
+            border-color: $primarybgbtn;
+            color: $primarybgbtn;
+            background: #fff;
+        }
+        &:active {
+            background-color: #fff;
+            background-size: 100%;
+            transition: background 0s;
+        }
+    }
+    &.btn-primary {
+        border-radius: 50px;
+        border: none;
+        min-width: 110px;
+        background: $primarybgbtn;
+        color: $white;
+        &:hover {
+            border-color: #2880c7;
+            background: #2880c7 radial-gradient(circle, transparent 1%, #2880c7 1%) center/15000%;
+        }
+        &:active {
+            background-color: #6eb9f7;
+            background-size: 100%;
+            transition: background 0s;
+        }
+    }
+    &.btn-primary-line {
+        min-width: 110px;
+        border: 1px solid $primary;
+        background: none;
+        color: $primary;
+        transition: all 1s ease;
+        &:hover {
+            border-color: $primary;
+            color: $white;
+            background: $primary radial-gradient(circle, transparent 1%, $primary 1%) center/15000%;
+        }
+        &:active {
+            background-color: #6eb9f7;
+            background-size: 100%;
+            transition: background 0s;
+        }
+    }
+    &.btn-default-line {
+        min-width: 110px;
+        border: 1px solid $font-color;
+        background: none;
+        color: $font-color;
+        transition: all 0.3s ease;
+        &:hover {
+            border-color: $font-dark;
+            color: $white;
+            background: $font-dark radial-gradient(circle, transparent 1%, $font-dark 1%) center/15000%;
+        }
+        &:active {
+            background-color: $white;
+            background-size: 100%;
+            transition: background 0s;
+        }
+    }
+    &.btn-link {
+        text-decoration: underline;
+        color: $primary;
+        white-space: normal;
+        &.btn-gray {
+            color: $font-color;
+        }
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    &:focus,
+    &:active,
+    &:active:focus {
+        box-shadow: none !important;
+    }
+    &.btn-sm {
+        font-size: 12px;
+        font-weight: 400;
+        height: 41px;
+    }
+    &.btn-md {
+        font-size: 12px;
+        font-weight: 700;
+        padding: 7px 15px;
+    }
+    &.btn-md-sm {
+        font-size: 14px;
+        font-weight: 700;
+        height: 41px;
+        line-height: 30px;
+    }
+}

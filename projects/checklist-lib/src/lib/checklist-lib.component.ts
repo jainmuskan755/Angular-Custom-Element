@@ -1,10 +1,9 @@
-import { Component, OnInit, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ChangeDetectorRef, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ApplicationService } from './services/application.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { slug } from './constants/slugs';
 import { LoaderService } from './services/loader.service';
-import { ThisReceiver } from '@angular/compiler';
 
 
 @Component({
@@ -18,7 +17,9 @@ export class ChecklistLibComponent implements OnInit {
   checkListDetails:any;
   isSubmitted = false;
   message ='';
-  errorMsg='';
+  errors=[];
+  config;
+
 
   get question_arr() { return this.checkListForm.get('all_required_made')['controls']['options'] as FormArray; }
   get extra_param_annual_arr() { return this.checkListForm.get('reduction_claimed')['controls']['annual']['controls']['extra_params'] as FormArray; }
@@ -41,23 +42,22 @@ export class ChecklistLibComponent implements OnInit {
   getData(){
     this.loaderService.showLoader();
     let params = {
-      appid : 256489
+      appid : 256400
     };
     this.api.makeServerCall(params, '/api/v1/'+slug.GET_SERVICE_CHECKLIST).subscribe((res: any) => {
       if (res.code === 200) {
         let resultData = res.result.checklist;
-        // console.log('this.checkListDetails',this.checkListDetails);
-        if( resultData != null ){
+        if( !(Object.keys(resultData).length === 0 && resultData.constructor === Object )){
           this.checkListDetails = JSON.parse( resultData);
-          // this.checkListDetails['ppp_loan_amount']['value']= this.numberWithCommas(this.checkListDetails.ppp_loan_amount['value']);
           console.log('checkListDetails',this.checkListDetails)
           this.patchTheForm();
+          this.validationForSentToSba();
           this.cdr.detectChanges();
-          this.loaderService.hideLoader();
+          
         } else{
-          this.message = 'No Checklist Data Available';
+          this.message = res.message;
         }
-        
+        this.loaderService.hideLoader();
       }
     }, (err: HttpErrorResponse) => {
       console.log('Error is:', err);
@@ -163,12 +163,14 @@ export class ChecklistLibComponent implements OnInit {
         value : ['', []],
         readonly : ['',[]],
         required:['',[]],
+        format:['',[]],
         input_type:['',[]]
       }),
       forgiveness_amount :this.formBuilder.group({
         label : ['', []],
         value : ['', []],
         readonly : ['',[]],
+        format : ['',[]],
         required:['',[]],
         input_type:['',[]]
       }),
@@ -285,6 +287,25 @@ export class ChecklistLibComponent implements OnInit {
     // this.checkListDetails = JSON.parse(JSON.stringify(this.data.checklist));
     // this.patchTheForm();
     // this.cdr.detectChanges();
+
+    // validation for sba_sent_to_sba
+   this.validationForSentToSba();
+  
+   }
+
+   validationForSentToSba(){
+    if( this.config ){
+      this.config = JSON.parse(this.config);
+      if( this.config.sent_to_sba){
+        this.disableWholeForm();
+      }
+    }
+   }
+
+   disableWholeForm(){
+    for (const control in this.checkListForm.controls) {
+      this.checkListForm.get(control).disable();
+    }
    }
 
   patchTheForm(){
@@ -307,11 +328,12 @@ export class ChecklistLibComponent implements OnInit {
     }
 
     if (this.checkListForm.valid) {
-      this.enableAllDisabledFields();
+      let formValuesToBeSent = {...this.checkListForm} ;
+      // this.enableAllDisabledFields();
       // console.log('this.checkListDetails',JSON.stringify(this.checkListDetails));
+      // console.log('this.checkListForm',JSON.stringify(this.checkListForm.value));
       let finalFormValues = this.removeExtraFields( this.checkListForm.value );
-      // console.log('this.checkListForm',JSON.stringify(finalFormValues));
-      this.makeServiceCallRequest( finalFormValues );
+      this.makeServiceCallRequest( finalFormValues, formValuesToBeSent );
     }
    
   }
@@ -355,25 +377,28 @@ export class ChecklistLibComponent implements OnInit {
     return formData;
   }
 
-  makeServiceCallRequest( finalFormValues ){
+  makeServiceCallRequest( finalFormValues, formValuesToBeSent ){
     this.loaderService.showLoader();
     let params={
-      appid : 256489,
+      appid : 256695,
       login_user_id: 8592,
       service:'widget',
       checklist:finalFormValues
     };
     this.api.makeServerCall(params, '/api/v1/'+slug.SAVE_SERVICE_CHECKLIST).subscribe((res: any) => {
       if (res.status == 'success') {
-        this.loaderService.hideLoader();
         // Success Message
+      } else{
+        this.errors = res['errors'];
+        this.api.gotoTop();
       }
+      this.loaderService.hideLoader();
     }, (err: HttpErrorResponse) => {
       console.log('Error is:', err);
-      this.errorMsg = err['result'];
+      
     });
   }
-
+ 
   enableAllDisabledFields(){
     for (const control in this.checkListForm.controls) {
         this.checkListForm.get(control).enable();

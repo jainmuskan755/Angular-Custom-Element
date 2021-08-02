@@ -2,7 +2,7 @@ import { NgModule, Injector } from '@angular/core';
 import { ChecklistLibComponent } from './checklist-lib.component';
 import { createCustomElement } from "@angular/elements"; 
 import { ApplicationService } from './services/application.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, APP_BASE_HREF } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderComponent } from './uikit/loader/loader.component';
@@ -19,8 +19,7 @@ import { LoaderComponent } from './uikit/loader/loader.component';
     HttpClientModule
   ],
   exports: [
-    ChecklistLibComponent,
-    LoaderComponent
+    ChecklistLibComponent
   ],
   providers:[
     ApplicationService
@@ -30,15 +29,14 @@ import { LoaderComponent } from './uikit/loader/loader.component';
 export class ChecklistLibModule {
 
   constructor(private injector: Injector) { 
+    if (!customElements.get('checklist-widget')) {
+      const element = createCustomElement(ChecklistLibComponent, { 
 
-    const element = createCustomElement(ChecklistLibComponent, { 
-
-      injector: this.injector 
-
-    }); 
-
-    customElements.define("checklist-widget", element); 
-
+        injector: this.injector 
+  
+      }); 
+  
+      customElements.define("checklist-widget", element);
+    }
   } 
-
  }

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { environment } from 'projects/checklist-lib-app/src/environments/environment';
+import { environment } from '../../environments/environment.prod';
 
-declare var $: any;
+// declare var $: any;
 @Injectable({
   providedIn: 'root'
 })
@@ -25,12 +25,12 @@ export class ApplicationService {
       .pipe(
         map((res: any) => {
           console.log('GET RESPONSE', res);
-          if ( (res.code === 200) || (res.status == "success")) {
+          // if ( (res.code === 200) || (res.status == "success")) {
             // console.log('Res:', res);
             return res;
-          } else {
-            return [];
-          }
+          // } else {
+            // return [];
+          // }
         })
       );
   }
@@ -80,5 +80,15 @@ export class ApplicationService {
   basicOathService(masterdataPass) {
       return new HttpHeaders().set('Authorization', 'Basic ' + btoa(masterdataPass));
   }
+
+
+  gotoTop() {
+    window.scroll({ 
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
+  }
+
 
 }
